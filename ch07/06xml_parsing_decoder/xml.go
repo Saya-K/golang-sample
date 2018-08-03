@@ -49,11 +49,24 @@ func main() {
 
 		switch se := t.(type) {
 		case xml.StartElement:
+			//fmt.Println("start:", se)
 			if se.Name.Local == "comment" {
 				var comment Comment
 				decoder.DecodeElement(&comment, &se)
 				fmt.Println(comment)
 			}
+			//case xml.EndElement:
+			//	fmt.Println("end:", se)
+			//case xml.CharData:
+			//	fmt.Println("CharData:", se)
+			//case xml.Comment:
+			//	fmt.Println("Comment:", se)
+			//case xml.ProcInst:
+			//	fmt.Println("ProcInst:", se)
+			//case xml.Directive:
+			//	fmt.Println("Directive:", se)
+			//default:
+			//	fmt.Println("unknown:", se)
 		}
 	}
 }

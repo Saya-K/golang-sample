@@ -29,7 +29,7 @@ type Comment struct {
 }
 
 func main() {
-	xmlFile, err := os.Open("post.xml")
+	xmlFile, err := os.Open(os.Getenv("GOPATH") + "/src/github.com/Saya-K/golang-sample/ch07/05xml_parsing_unmarshal_2/post.xml")
 	if err != nil {
 		fmt.Println("Error opening XML file:", err)
 		return
@@ -43,18 +43,19 @@ func main() {
 
 	var post Post
 	xml.Unmarshal(xmlData, &post)
-	fmt.Println(post.XMLName.Local)
-	fmt.Println(post.Id)
-	fmt.Println(post.Content)
-	fmt.Println(post.Author)
-	fmt.Println(post.Xml)
-	fmt.Println(post.Author.Id)
-	fmt.Println(post.Author.Name)
-	fmt.Println(post.Comments)
-	fmt.Println(post.Comments[0].Id)
-	fmt.Println(post.Comments[0].Content)
-	fmt.Println(post.Comments[0].Author)
-	fmt.Println(post.Comments[1].Id)
-	fmt.Println(post.Comments[1].Content)
-	fmt.Println(post.Comments[1].Author)
+	//	fmt.Println(post.XMLName.Local)
+	//	fmt.Println(post.Id)
+	//	fmt.Println(post.Content)
+	//	fmt.Println(post.Author)
+	//	fmt.Println(post.Xml)
+	//	fmt.Println(post.Author.Id)
+	//	fmt.Println(post.Author.Name)
+	//	fmt.Println(post.Comments)
+	//	fmt.Println(post.Comments[0].Id)
+	//	fmt.Println(post.Comments[0].Content)
+	//	fmt.Println(post.Comments[0].Author)
+	//	fmt.Println(post.Comments[1].Id)
+	//	fmt.Println(post.Comments[1].Content)
+	//	fmt.Println(post.Comments[1].Author)
+	fmt.Println(post)
 }

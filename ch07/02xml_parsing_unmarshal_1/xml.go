@@ -8,12 +8,9 @@ import (
 	"os"
 )
 
-type Post struct {
-	XMLName xml.Name `xml:"post"`
-	Id      string   `xml:"id,attr"`
-	Content string   `xml:"content"`
-	Author  Author   `xml:"author"`
-	Xml     string   `xml:",innerxml"`
+type A struct {
+	XMLName xml.Name `xml:"B"`
+	Posts   []Post   `xml:"posts>post"`
 }
 
 type Author struct {
@@ -21,8 +18,15 @@ type Author struct {
 	Name string `xml:",chardata"`
 }
 
+type Post struct {
+	Id      string `xml:"id, attr"`
+	Content string `xml:"content"`
+	Author1 Author `xml:"author1"`
+	Author2 Author `xml:"author2"`
+}
+
 func main() {
-	xmlFile, err := os.Open("post.xml")
+	xmlFile, err := os.Open(os.Getenv("GOPATH") + "/src/github.com/Saya-K/golang-sample/ch07/02xml_parsing_unmarshal_1/post.xml")
 	if err != nil {
 		fmt.Println("Error opening XML file:", err)
 		return
@@ -34,7 +38,7 @@ func main() {
 		return
 	}
 
-	var post Post
+	var post A
 	xml.Unmarshal(xmlData, &post)
 	fmt.Println(post)
 }
