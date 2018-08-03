@@ -2,7 +2,7 @@
 /*
 
 ＜まずPostgreSQLを起動＞
-$ psql -f install.sql 
+$ psql -f install.sql
 $ psql -f setup.sql
 $ go build
 $ ./10web_service &
@@ -13,6 +13,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"path"
 	"strconv"
@@ -74,13 +75,15 @@ func handleGet(w http.ResponseWriter, r *http.Request) (err error) {
 // Create a post
 // POST /post/
 func handlePost(w http.ResponseWriter, r *http.Request) (err error) {
-	len := r.ContentLength
-	body := make([]byte, len)
+	leng := r.ContentLength
+	body := make([]byte, leng)
 	r.Body.Read(body)
 	var post Post
 	json.Unmarshal(body, &post)
+	fmt.Println(post)
 	err = post.create()
 	if err != nil {
+		fmt.Println(err)
 		return
 	}
 	w.WriteHeader(200)

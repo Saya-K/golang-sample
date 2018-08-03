@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-  "os"
+	"os"
 )
 
 type Post struct {
@@ -27,28 +27,26 @@ type Comment struct {
 }
 
 func main() {
-
-  post := Post{
-    Id:      1,
-    Content: "Hello World!",
-    Author: Author{
-      Id:   2,
-      Name: "Sau Sheong",
-    },
-    Comments: []Comment{
-      Comment{
-        Id:      3,
-        Content: "Have a great day!",
-        Author:  "Adam",
-      },
-      Comment{
-        Id:      4,
-        Content: "How are you today?",
-        Author:  "Betty",
-      },
-    },
-  }
-
+	post := Post{
+		Id:      1,
+		Content: "Hello World!",
+		Author: Author{
+			Id:   2,
+			Name: "Sau Sheong",
+		},
+		Comments: []Comment{
+			{
+				Id:      3,
+				Content: "Have a great day!",
+				Author:  "Adam",
+			},
+			{
+				Id:      4,
+				Content: "How are you today?",
+				Author:  "Betty",
+			},
+		},
+	}
 
 	jsonFile, err := os.Create("post.json")
 	if err != nil {
@@ -56,7 +54,7 @@ func main() {
 		return
 	}
 	jsonWriter := io.Writer(jsonFile)
-	encoder := json.NewEncoder(jsonWriter)  
+	encoder := json.NewEncoder(jsonWriter)
 	err = encoder.Encode(&post)
 	if err != nil {
 		fmt.Println("Error encoding JSON to file:", err)

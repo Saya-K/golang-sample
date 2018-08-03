@@ -39,15 +39,8 @@ func main() {
 		return
 	}
 
-	fmt.Println(string(jsonData))
 	var post Post
 	json.Unmarshal(jsonData, &post)
-	fmt.Println(post.Id)
-	fmt.Println(post.Content)
-	fmt.Println(post.Author.Id)
-	fmt.Println(post.Author.Name)
-	fmt.Println(post.Comments[0].Id)
-	fmt.Println(post.Comments[0].Content)
-	fmt.Println(post.Comments[0].Author)
+	fmt.Println(post)
 
 }
